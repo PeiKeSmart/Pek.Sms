@@ -1,4 +1,6 @@
 ﻿using Microsoft.Extensions.DependencyInjection.Extensions;
+using NewLife.Cube.Jobs;
+
 using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
@@ -25,7 +27,7 @@ public class DHStartup : IDHStartup
     /// <param name="webHostEnvironment">应用程序的环境</param>
     public void ConfigureServices(IServiceCollection services, IConfiguration configuration, IWebHostEnvironment webHostEnvironment)
     {
-        
+        //services.TryAddScoped<ISmsService, SmsService>();
     }
 
     /// <summary>
