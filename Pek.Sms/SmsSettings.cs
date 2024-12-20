@@ -256,22 +256,4 @@ public class SmsData
     /// </summary>
     [Description("腾讯短信AppId")]
     public String? AppId { get; set; }
-
-    /// <summary>
-    /// 登录短信
-    /// </summary>
-    [Description("登录短信")]
-    public Boolean SmsLogin { get; set; }
-
-    /// <summary>
-    /// 注册短信
-    /// </summary>
-    [Description("注册短信")]
-    public Boolean SmsRegister { get; set; }
-
-    /// <summary>
-    /// 找回密码短信
-    /// </summary>
-    [Description("找回密码短信")]
-    public Boolean SmsPassword { get; set; }
 }
