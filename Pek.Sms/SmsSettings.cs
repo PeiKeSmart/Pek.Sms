@@ -78,7 +78,9 @@ public class SmsSettings : Config<SmsSettings>
                     Code = IdHelper.GetIdString(),
                     Name = "aliyun",
                     DisplayName = "阿里云",
-                    SmsType = 0
+                    SmsType = 0,
+                    ExtendFields = "RetryTimes",
+                    ExtendData = "{\"RetryTimes\": \"3\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
@@ -234,26 +236,32 @@ public class SmsData
     public Boolean IsEnabled { get; set; }
 
     /// <summary>
-    /// Access Key
+    /// AccessKey/AccessKeyId/AppId
     /// </summary>
-    [Description("Access Key")]
+    [Description("AccessKey/AccessKeyId/AppId")]
     public String? AccessKey { get; set; }
 
     /// <summary>
-    /// Access Secret
+    /// AccessKeySecret/AppKey
     /// </summary>
-    [Description("Access Secret")]
+    [Description("AccessKeySecret/AppKey")]
     public String? AccessSecret { get; set; }
 
     /// <summary>
-    /// Pass Key
+    /// 签名
     /// </summary>
-    [Description("Pass Key")]
+    [Description("签名")]
     public String? PassKey { get; set; }
 
     /// <summary>
-    /// 腾讯短信AppId
+    /// 扩展字段
     /// </summary>
-    [Description("腾讯短信AppId")]
-    public String? AppId { get; set; }
+    [Description("扩展字段")]
+    public String? ExtendFields { get; set; }
+
+    /// <summary>
+    /// 扩展内容
+    /// </summary>
+    [Description("扩展内容")]
+    public String? ExtendData { get; set; }
 }

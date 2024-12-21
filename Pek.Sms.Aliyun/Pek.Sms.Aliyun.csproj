@@ -1,10 +1,10 @@
-﻿<Project Sdk="Microsoft.NET.Sdk.Web">
+﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
     <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
     <OutputType>Library</OutputType>
-    <RootNamespace>Pek.Sms.Extensions</RootNamespace>
-    <AssemblyTitle>邮件操作扩展类库</AssemblyTitle>
-    <Description>基于DH框架的邮件操作扩展类库</Description>
+    <RootNamespace>Pek.Sms.Aliyun</RootNamespace>
+    <AssemblyTitle>阿里云短信操作类库</AssemblyTitle>
+    <Description>基于DH框架的短信操作类库。来源于https://github.com/cosmos-open/cosmos-sms</Description>
     <Company>湖北登灏科技有限公司</Company>
     <Copyright>©2020-2024 湖北登灏科技有限公司</Copyright>
     <VersionPrefix>4.00</VersionPrefix>
@@ -21,9 +21,6 @@
     <NoWarn>1701;1702;1591;NU5104;NU1505;NETSDK1138;CS7035</NoWarn>
     <AnalysisLevel>latest</AnalysisLevel>
     <WarningsAsErrors>CA2007</WarningsAsErrors> 
-   
-    <!--禁止生成launchSettings.json-->
-    <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
   </PropertyGroup>
 
   <PropertyGroup>
@@ -51,8 +48,7 @@
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Pek.NCube.Base" Version="4.0.2024.1220-beta0320" />
-    <PackageReference Include="Pek.NCubeUI" Version="4.0.2024.1220-beta0320" />
+    <PackageReference Include="Pek.Common" Version="4.0.2024.1220-beta0211" />
   </ItemGroup>
 
   <ItemGroup>
