@@ -1,6 +1,10 @@
 ﻿using System.ComponentModel;
+using System.Runtime.Serialization;
+using System.Xml.Serialization;
 
+using NewLife;
 using NewLife.Configuration;
+using NewLife.Serialization;
 
 using Pek.Ids;
 
@@ -81,7 +85,7 @@ public class SmsSettings : Config<SmsSettings>
                     DisplayName = "阿里云",
                     SmsType = 0,
                     ExtendFields = "RetryTimes",
-                    ExtendData = "{\"RetryTimes\": \"3\"}"
+                    ExtendData = "{\"RetryTimes\": \"3\",\"TemplateCode\": \"\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
@@ -252,7 +256,7 @@ public class SmsData
     /// 签名
     /// </summary>
     [Description("签名")]
-    public String? PassKey { get; set; }
+    public String? SignName { get; set; }
 
     /// <summary>
     /// 扩展字段
@@ -265,4 +269,19 @@ public class SmsData
     /// </summary>
     [Description("扩展内容")]
     public String? ExtendData { get; set; }
+
+    /// <summary>
+    /// 扩展内容。转为字典
+    /// </summary>
+    [Description("扩展内容。转为字典")]
+    [XmlIgnore, IgnoreDataMember]
+    public IDictionary<String, Object?>? Data
+    {
+        get
+        {
+            if (ExtendData.IsNullOrWhiteSpace()) return null;
+
+            return JsonHelper.DecodeJson(ExtendData);
+        }
+    }
 }

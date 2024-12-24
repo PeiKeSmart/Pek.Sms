@@ -2,6 +2,7 @@
 using System.Text;
 
 using Pek.Sms.Aliyun.Core.Extensions;
+using Pek.Sms.Encryption;
 
 namespace Pek.Sms.Aliyun.Core.Helpers;
 
@@ -32,12 +33,9 @@ public static class SignatureHelper
 
     private static String GetOrigin(this IDictionary<String, String> coll) => $"POST&%2F&{PercentEncode(String.Join("&", coll.OrderBy(x => x.Key, StringComparer.Ordinal).Select(x => $"{PercentEncode(x.Key)}={PercentEncode(x.Value)}")))}";
 
-    private static string Signature(this string orgin, string key)
-    {
-        return HMACSHA1HashingProvider.Signature(orgin, $"{key}&", Encoding.UTF8);
-    }
+    private static String Signature(this String orgin, String key) => HMACSHA1HashingProvider.Signature(orgin, $"{key}&", Encoding.UTF8);
 
-    private static string PercentEncode(string value)
+    private static String PercentEncode(String value)
     {
         var stringBuilder = new StringBuilder();
 
@@ -45,17 +43,17 @@ public static class SignatureHelper
 
         foreach (var b in bytes)
         {
-            var c = (char)b;
+            var c = (Char)b;
 
-            if (PERCENT_ENCODE_TEXT.IndexOf(c) >= 0)
+            if (PERCENT_ENCODE_TEXT.Contains(c))
             {
                 stringBuilder.Append(c);
             }
             else
             {
                 stringBuilder
-                    .Append("%")
-                    .Append(string.Format(CultureInfo.InvariantCulture, "{0:X2}", (int)c));
+                    .Append('%')
+                    .Append(String.Format(CultureInfo.InvariantCulture, "{0:X2}", (Int32)c));
             }
         }
 

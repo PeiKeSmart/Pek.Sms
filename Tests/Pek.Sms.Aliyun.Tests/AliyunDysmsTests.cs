@@ -7,6 +7,8 @@ namespace Pek.Sms.Aliyun.Tests;
 public class AliyunDysmsTests {
     private String? _messageIfError { get; set; }
 
+    private readonly AliyunDysmsClient _client;
+
     public AliyunDysmsTests()
     {
         ExceptionHandleResolver.SetHandler(e => {
@@ -16,5 +18,7 @@ public class AliyunDysmsTests {
             sb.AppendLine(e.StackTrace);
             _messageIfError += sb.ToString();
         });
+
+        _client = new AliyunDysmsClient(ExceptionHandleResolver.ResolveHandler());
     }
 }

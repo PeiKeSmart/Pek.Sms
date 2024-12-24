@@ -1,6 +1,6 @@
 ﻿using NewLife.Serialization;
 
-using Pek.Sms.Core;
+using Pek.Sms.Aliyun.Core;
 using Pek.Sms.Exceptions;
 
 namespace Pek.Sms.Aliyun.Models;
@@ -10,7 +10,7 @@ public class AliyunDysmsMessage
     /// <summary>
     /// 短信模板Code，应严格按"模板CODE"填写, 请参考: https://dysms.console.aliyun.com/dysms.htm#/develop/template ，必填
     /// </summary>
-    public String? TemplateCode { get; set; }
+    public String TemplateCode { get; set; } = String.Empty;
 
     public List<String> Phone { get; set; } = [];
 
@@ -24,10 +24,10 @@ public class AliyunDysmsMessage
 
     public Boolean HasTemplateParams() => TemplateParams.Count != 0;
 
-    public void FixParameters(IDictionary<String, Object> config)
+    public void FixParameters(IDictionary<String, Object?>? config)
     {
         if (String.IsNullOrWhiteSpace(TemplateCode))
-            TemplateCode = config["TemplateCode"].SafeString();
+            TemplateCode = config!["TemplateCode"].SafeString();
     }
 
     public void CheckParameters()

@@ -1,6 +1,6 @@
 ﻿using NewLife.Serialization;
 
-using Pek.Sms.Core;
+using Pek.Sms.Aliyun.Core;
 using Pek.Sms.Exceptions;
 
 namespace Pek.Sms.Aliyun.Models;
