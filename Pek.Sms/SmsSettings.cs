@@ -14,6 +14,7 @@ public class SmsSettings : Config<SmsSettings>
     /// <summary>
     /// 短信数据
     /// </summary>
+    [Description("短信数据")]
     public List<SmsData> Data { get; set; } = [];
 
     /// <summary>实例化</summary>
