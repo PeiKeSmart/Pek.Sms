@@ -1,5 +1,7 @@
 ﻿using System.Text;
 
+using NewLife.Log;
+
 using Pek.Mail.Exceptions;
 
 namespace Pek.Sms.Aliyun.Tests;
@@ -19,6 +21,25 @@ public class AliyunDysmsTests {
             _messageIfError += sb.ToString();
         });
 
+        
+
+
         _client = new AliyunDysmsClient(ExceptionHandleResolver.ResolveHandler());
+    }
+
+    [Fact]
+    public async Task CheckResult()
+    {
+        var client = new Pek.Webs.Clients.WebClient();
+        var res = await client.Get("https://www.deng-hao.com")
+            .Retry(3)
+            .WhenCatch<HttpRequestException>(ex =>
+            {
+                XTrace.WriteLine($"请求失败：{ex.Message}");
+                return $"请求失败：{ex.Message}";
+            })
+            .ResultAsync();
+
+        XTrace.WriteLine($"获取到的数据：{res}");
     }
 }
