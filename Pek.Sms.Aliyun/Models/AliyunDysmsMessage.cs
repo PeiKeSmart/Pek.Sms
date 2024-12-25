@@ -24,10 +24,10 @@ public class AliyunDysmsMessage
 
     public Boolean HasTemplateParams() => TemplateParams.Count != 0;
 
-    public void FixParameters(IDictionary<String, Object?>? config)
+    public void FixParameters(IDictionary<String, Object?> config)
     {
         if (String.IsNullOrWhiteSpace(TemplateCode))
-            TemplateCode = config!["TemplateCode"].SafeString();
+            TemplateCode = config["TemplateCode"].SafeString();
     }
 
     public void CheckParameters()

@@ -84,26 +84,32 @@ public class SmsSettings : Config<SmsSettings>
                     Name = "aliyun",
                     DisplayName = "阿里云",
                     SmsType = 0,
-                    ExtendFields = "RetryTimes",
-                    ExtendData = "{\"RetryTimes\": \"3\",\"TemplateCode\": \"\"}"
+                    //ExtendFields = "RetryTimes",
+                    //ExtendData = "{\"RetryTimes\": \"3\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
                     Name = "aliyun",
                     DisplayName = "阿里云",
-                    SmsType = 1
+                    SmsType = 1,
+                    //ExtendFields = "RetryTimes",
+                    //ExtendData = "{\"RetryTimes\": \"3\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
                     Name = "aliyun",
                     DisplayName = "阿里云",
-                    SmsType = 2
+                    SmsType = 2,
+                    //ExtendFields = "RetryTimes",
+                    //ExtendData = "{\"RetryTimes\": \"3\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
                     Name = "aliyun",
                     DisplayName = "阿里云",
-                    SmsType = 3
+                    SmsType = 3,
+                    //ExtendFields = "RetryTimes",
+                    //ExtendData = "{\"RetryTimes\": \"3\"}"
                 },
                 new() {
                     Code = IdHelper.GetIdString(),
@@ -197,6 +203,16 @@ public class SmsSettings : Config<SmsSettings>
         }
         return null;
     }
+
+    /// <summary>根据名称和类型获取数据</summary>
+    public SmsData? FindByNameAndType(String Name, Int32 SmsType)
+    {
+        foreach (var item in Data)
+        {
+            if (item.Name.EqualIgnoreCase(Name) && item.SmsType == SmsType) return item;
+        }
+        return null;
+    }
 }
 
 /// <summary>
@@ -244,19 +260,37 @@ public class SmsData
     /// AccessKey/AccessKeyId/AppId
     /// </summary>
     [Description("AccessKey/AccessKeyId/AppId")]
-    public String? AccessKey { get; set; }
+    public String AccessKey { get; set; } = String.Empty;
 
     /// <summary>
     /// AccessKeySecret/AppKey
     /// </summary>
     [Description("AccessKeySecret/AppKey")]
-    public String? AccessSecret { get; set; }
+    public String AccessSecret { get; set; } = String.Empty;
 
     /// <summary>
     /// 签名
     /// </summary>
     [Description("签名")]
-    public String? SignName { get; set; }
+    public String SignName { get; set; } = String.Empty;
+
+    /// <summary>
+    /// 请求超时时间
+    /// </summary>
+    [Description("请求超时时间")]
+    public Int32 Timeout { get; set; } = 60000;
+
+    /// <summary>
+    /// 是否请求https
+    /// </summary>
+    [Description("是否请求https")]
+    public Boolean Security { get; set; }
+
+    /// <summary>
+    /// 重试次数
+    /// </summary>
+    [Description("重试次数")]
+    public Int32 RetryTimes { get; set; } = 3;
 
     /// <summary>
     /// 扩展字段
@@ -275,13 +309,13 @@ public class SmsData
     /// </summary>
     [Description("扩展内容。转为字典")]
     [XmlIgnore, IgnoreDataMember]
-    public IDictionary<String, Object?>? Data
+    public IDictionary<String, Object?> Data
     {
         get
         {
-            if (ExtendData.IsNullOrWhiteSpace()) return null;
+            if (ExtendData.IsNullOrWhiteSpace()) return new Dictionary<String, Object?>();
 
-            return JsonHelper.DecodeJson(ExtendData);
+            return JsonHelper.DecodeJson(ExtendData) ?? new Dictionary<String, Object?>();
         }
     }
 }
