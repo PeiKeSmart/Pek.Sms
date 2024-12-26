@@ -6,6 +6,8 @@ namespace Pek.Sms.FengHuo;
 
 public class FengHuoSmsClient
 {
+    public static String Name { get; } = "fenghuo";
+
     private readonly SmsData _config;
     private String BaseAddress { get; set; }
     private readonly WebClient client;

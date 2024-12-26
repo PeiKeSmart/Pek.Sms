@@ -13,6 +13,8 @@ namespace Pek.Sms.Aliyun;
 
 public class AliyunDysmsClient : SmsClientBase
 {
+    public static String Name { get; } = "aliyun";
+
     private readonly SmsData _config;
     private readonly WebClient<AliyunDysmsResult> client;
     private String BaseAddress { get; set; }

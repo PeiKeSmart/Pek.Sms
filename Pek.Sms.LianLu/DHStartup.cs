@@ -3,7 +3,7 @@ using Pek.Infrastructure;
 using Pek.Mail;
 using Pek.VirtualFileSystem;
 
-namespace Pek.Sms.Aliyun;
+namespace Pek.Sms.LianLu;
 
 /// <summary>
 /// 表示应用程序启动时配置SignalR的对象
@@ -33,47 +33,39 @@ public class DHStartup : IDHStartup
     /// </summary>
     public void ProcessData()
     {
-        var list = SmsSettings.Current.FindByName(AliyunDysmsClient.Name);
+        var list = SmsSettings.Current.FindByName("fenghuo");
         if (list.Any()) return;
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 0,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
+            Name = "fenghuo",
+            DisplayName = "烽火",
+            SmsType = 0
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 1,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
+            Name = "fenghuo",
+            DisplayName = "烽火",
+            SmsType = 1
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 2,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
+            Name = "fenghuo",
+            DisplayName = "烽火",
+            SmsType = 2
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 3,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
+            Name = "fenghuo",
+            DisplayName = "烽火",
+            SmsType = 3
         });
     }
 

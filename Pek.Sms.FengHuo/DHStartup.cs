@@ -33,13 +33,13 @@ public class DHStartup : IDHStartup
     /// </summary>
     public void ProcessData()
     {
-        var list = SmsSettings.Current.FindByName("fenghuo");
+        var list = SmsSettings.Current.FindByName(FengHuoSmsClient.Name);
         if (list.Any()) return;
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
+            Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
             SmsType = 0
         });
@@ -47,7 +47,7 @@ public class DHStartup : IDHStartup
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
+            Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
             SmsType = 1
         });
@@ -55,7 +55,7 @@ public class DHStartup : IDHStartup
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
+            Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
             SmsType = 2
         });
@@ -63,7 +63,7 @@ public class DHStartup : IDHStartup
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
+            Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
             SmsType = 3
         });
