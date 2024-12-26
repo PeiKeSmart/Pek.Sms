@@ -212,10 +212,7 @@ public class SmsSettings : Config<SmsSettings>
         return null;
     }
 
-    public IList<SmsData> FindByName(String Name)
-    {
-        return Data.FindAll(e => e.Name.EqualIgnoreCase(Name));
-    }
+    public IList<SmsData> FindByName(String Name) => Data.FindAll(e => e.Name.EqualIgnoreCase(Name));
 }
 
 /// <summary>

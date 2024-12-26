@@ -3,7 +3,7 @@ using Pek.Infrastructure;
 using Pek.Mail;
 using Pek.VirtualFileSystem;
 
-namespace Pek.Sms.FengHuo;
+namespace Pek.Sms.Aliyun;
 
 /// <summary>
 /// 表示应用程序启动时配置SignalR的对象
@@ -33,39 +33,47 @@ public class DHStartup : IDHStartup
     /// </summary>
     public void ProcessData()
     {
-        var list = SmsSettings.Current.FindByName("fenghuo");
+        var list = SmsSettings.Current.FindByName("aliyun");
         if (list.Any()) return;
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
-            DisplayName = "烽火",
-            SmsType = 0
+            Name = "aliyun",
+            DisplayName = "阿里云",
+            SmsType = 0,
+            //ExtendFields = "RetryTimes",
+            //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
-            DisplayName = "烽火",
-            SmsType = 1
+            Name = "aliyun",
+            DisplayName = "阿里云",
+            SmsType = 1,
+            //ExtendFields = "RetryTimes",
+            //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
-            DisplayName = "烽火",
-            SmsType = 2
+            Name = "aliyun",
+            DisplayName = "阿里云",
+            SmsType = 2,
+            //ExtendFields = "RetryTimes",
+            //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
         SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
-            Name = "fenghuo",
-            DisplayName = "烽火",
-            SmsType = 3
+            Name = "aliyun",
+            DisplayName = "阿里云",
+            SmsType = 3,
+            //ExtendFields = "RetryTimes",
+            //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
     }
 
