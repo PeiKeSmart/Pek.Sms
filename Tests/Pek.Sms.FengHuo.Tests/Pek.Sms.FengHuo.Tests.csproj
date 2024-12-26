@@ -18,7 +18,7 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\..\Pek.Sms.TencentCloud\Pek.Sms.TencentCloud.csproj" />
+    <ProjectReference Include="..\..\Pek.Sms.FengHuo\Pek.Sms.FengHuo.csproj" />
   </ItemGroup>
 
   <ItemGroup>

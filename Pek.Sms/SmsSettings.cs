@@ -6,8 +6,6 @@ using NewLife;
 using NewLife.Configuration;
 using NewLife.Serialization;
 
-using Pek.Ids;
-
 namespace Pek.Mail;
 
 /// <summary>短信设置</summary>
@@ -24,172 +22,172 @@ public class SmsSettings : Config<SmsSettings>
     /// <summary>实例化</summary>
     public SmsSettings() { }
 
-    /// <summary>加载时触发</summary>
-    protected override void OnLoaded()
-    {
-        if (Data == null || Data.Count == 0)
-        {
-            var list = new List<SmsData>
-            {
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "fenghuo",
-                    DisplayName = "烽火",
-                    SmsType = 0
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "fenghuo",
-                    DisplayName = "烽火",
-                    SmsType = 1
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "fenghuo",
-                    DisplayName = "烽火",
-                    SmsType = 2
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "fenghuo",
-                    DisplayName = "烽火",
-                    SmsType = 3
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "lianlu",
-                    DisplayName = "联麓",
-                    SmsType = 0
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "lianlu",
-                    DisplayName = "联麓",
-                    SmsType = 1
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "lianlu",
-                    DisplayName = "联麓",
-                    SmsType = 2
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "lianlu",
-                    DisplayName = "联麓",
-                    SmsType = 3
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "aliyun",
-                    DisplayName = "阿里云",
-                    SmsType = 0,
-                    //ExtendFields = "RetryTimes",
-                    //ExtendData = "{\"RetryTimes\": \"3\"}"
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "aliyun",
-                    DisplayName = "阿里云",
-                    SmsType = 1,
-                    //ExtendFields = "RetryTimes",
-                    //ExtendData = "{\"RetryTimes\": \"3\"}"
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "aliyun",
-                    DisplayName = "阿里云",
-                    SmsType = 2,
-                    //ExtendFields = "RetryTimes",
-                    //ExtendData = "{\"RetryTimes\": \"3\"}"
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "aliyun",
-                    DisplayName = "阿里云",
-                    SmsType = 3,
-                    //ExtendFields = "RetryTimes",
-                    //ExtendData = "{\"RetryTimes\": \"3\"}"
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "tencent",
-                    DisplayName = "腾讯云",
-                    SmsType = 0
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "tencent",
-                    DisplayName = "腾讯云",
-                    SmsType = 1
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "tencent",
-                    DisplayName = "腾讯云",
-                    SmsType = 2
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "tencent",
-                    DisplayName = "腾讯云",
-                    SmsType = 3
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "mysubmail",
-                    DisplayName = "赛邮云",
-                    SmsType = 0
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "mysubmail",
-                    DisplayName = "赛邮云",
-                    SmsType = 1
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "mysubmail",
-                    DisplayName = "赛邮云",
-                    SmsType = 2
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "mysubmail",
-                    DisplayName = "赛邮云",
-                    SmsType = 3
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "netease",
-                    DisplayName = "网易云信",
-                    SmsType = 0
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "netease",
-                    DisplayName = "网易云信",
-                    SmsType = 1
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "netease",
-                    DisplayName = "网易云信",
-                    SmsType = 2
-                },
-                new() {
-                    Code = IdHelper.GetIdString(),
-                    Name = "netease",
-                    DisplayName = "网易云信",
-                    SmsType = 3
-                }
-            };
+    ///// <summary>加载时触发</summary>
+    //protected override void OnLoaded()
+    //{
+    //    if (Data == null || Data.Count == 0)
+    //    {
+    //        var list = new List<SmsData>
+    //        {
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "fenghuo",
+    //                DisplayName = "烽火",
+    //                SmsType = 0
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "fenghuo",
+    //                DisplayName = "烽火",
+    //                SmsType = 1
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "fenghuo",
+    //                DisplayName = "烽火",
+    //                SmsType = 2
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "fenghuo",
+    //                DisplayName = "烽火",
+    //                SmsType = 3
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "lianlu",
+    //                DisplayName = "联麓",
+    //                SmsType = 0
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "lianlu",
+    //                DisplayName = "联麓",
+    //                SmsType = 1
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "lianlu",
+    //                DisplayName = "联麓",
+    //                SmsType = 2
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "lianlu",
+    //                DisplayName = "联麓",
+    //                SmsType = 3
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "aliyun",
+    //                DisplayName = "阿里云",
+    //                SmsType = 0,
+    //                //ExtendFields = "RetryTimes",
+    //                //ExtendData = "{\"RetryTimes\": \"3\"}"
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "aliyun",
+    //                DisplayName = "阿里云",
+    //                SmsType = 1,
+    //                //ExtendFields = "RetryTimes",
+    //                //ExtendData = "{\"RetryTimes\": \"3\"}"
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "aliyun",
+    //                DisplayName = "阿里云",
+    //                SmsType = 2,
+    //                //ExtendFields = "RetryTimes",
+    //                //ExtendData = "{\"RetryTimes\": \"3\"}"
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "aliyun",
+    //                DisplayName = "阿里云",
+    //                SmsType = 3,
+    //                //ExtendFields = "RetryTimes",
+    //                //ExtendData = "{\"RetryTimes\": \"3\"}"
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "tencent",
+    //                DisplayName = "腾讯云",
+    //                SmsType = 0
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "tencent",
+    //                DisplayName = "腾讯云",
+    //                SmsType = 1
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "tencent",
+    //                DisplayName = "腾讯云",
+    //                SmsType = 2
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "tencent",
+    //                DisplayName = "腾讯云",
+    //                SmsType = 3
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "mysubmail",
+    //                DisplayName = "赛邮云",
+    //                SmsType = 0
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "mysubmail",
+    //                DisplayName = "赛邮云",
+    //                SmsType = 1
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "mysubmail",
+    //                DisplayName = "赛邮云",
+    //                SmsType = 2
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "mysubmail",
+    //                DisplayName = "赛邮云",
+    //                SmsType = 3
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "netease",
+    //                DisplayName = "网易云信",
+    //                SmsType = 0
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "netease",
+    //                DisplayName = "网易云信",
+    //                SmsType = 1
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "netease",
+    //                DisplayName = "网易云信",
+    //                SmsType = 2
+    //            },
+    //            new() {
+    //                Code = IdHelper.GetIdString(),
+    //                Name = "netease",
+    //                DisplayName = "网易云信",
+    //                SmsType = 3
+    //            }
+    //        };
 
-            Data = list;
-        }
+    //        Data = list;
+    //    }
 
-        base.OnLoaded();
-    }
+    //    base.OnLoaded();
+    //}
 
     /// <summary>获取默认的配置数据</summary>
     public SmsData FindDefault(Int32 SmsType) => Data.FirstOrDefault(e => e.SmsType == SmsType && e.IsDefault) ?? Data[0];
@@ -212,6 +210,11 @@ public class SmsSettings : Config<SmsSettings>
             if (item.Name.EqualIgnoreCase(Name) && item.SmsType == SmsType) return item;
         }
         return null;
+    }
+
+    public IList<SmsData> FindByName(String Name)
+    {
+        return Data.FindAll(e => e.Name.EqualIgnoreCase(Name));
     }
 }
 

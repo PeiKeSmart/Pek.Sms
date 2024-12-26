@@ -15,8 +15,6 @@ public class AliyunDysmsTests {
     {
         _config = SmsSettings.Current.FindByNameAndType("aliyun", 0);
 
-        XTrace.WriteLine($"参数是否为空：{_config == null}");
-
         _client = new AliyunDysmsClient(_config);
     }
 

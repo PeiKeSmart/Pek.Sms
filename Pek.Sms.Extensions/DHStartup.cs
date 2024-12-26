@@ -1,7 +1,4 @@
-﻿using Microsoft.Extensions.DependencyInjection.Extensions;
-using NewLife.Cube.Jobs;
-
-using Pek.Infrastructure;
+﻿using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
 namespace Pek.Mail.Extensions;
@@ -9,7 +6,7 @@ namespace Pek.Mail.Extensions;
 /// <summary>
 /// 表示应用程序启动时配置SignalR的对象
 /// </summary>
-public class DHStartup : IDHStartup
+public class DHStartup : IPekStartup
 {
     /// <summary>
     /// 配置添加的中间件的使用
@@ -100,6 +97,8 @@ public class DHStartup : IDHStartup
     {
 
     }
+
+    public void ProcessData() => throw new NotImplementedException();
 
     /// <summary>
     /// 获取此启动配置实现的顺序
