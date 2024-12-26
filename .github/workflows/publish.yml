@@ -21,10 +21,14 @@ jobs:
     - name: Restore
       run: |
         dotnet restore Pek.Sms/Pek.Sms.csproj
+        dotnet restore Pek.Sms.FengHuo/Pek.Sms.FengHuo.csproj
+        dotnet restore Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet restore Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
     - name: Build
       run: |
         dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms/Pek.Sms.csproj
+        dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.FengHuo/Pek.Sms.FengHuo.csproj
+        dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
     - name: Publish
       run: |

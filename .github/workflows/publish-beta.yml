@@ -5,11 +5,15 @@ on:
     branches: [ main ]
     paths:
         - 'Pek.Sms/**'
+        - 'Pek.Sms.FengHuo/**'
+        - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
   pull_request:
     branches: [ main ]
     paths:
         - 'Pek.Sms/**'
+        - 'Pek.Sms.FengHuo/**'
+        - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
   workflow_dispatch:
 
@@ -33,6 +37,8 @@ jobs:
     - name: Pack
       run: |
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms/Pek.Sms.csproj
+        dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.FengHuo/Pek.Sms.FengHuo.csproj
+        dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
 
     - name: Publish
