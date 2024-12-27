@@ -6,6 +6,7 @@ on:
     paths:
         - 'Pek.Sms/**'
         - 'Pek.Sms.FengHuo/**'
+        - 'Pek.Sms.LianLu/**'
         - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
   pull_request:
@@ -13,6 +14,7 @@ on:
     paths:
         - 'Pek.Sms/**'
         - 'Pek.Sms.FengHuo/**'
+        - 'Pek.Sms.LianLu/**'
         - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
   workflow_dispatch:
@@ -38,6 +40,7 @@ jobs:
       run: |
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms/Pek.Sms.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.FengHuo/Pek.Sms.FengHuo.csproj
+        dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.LianLu/Pek.Sms.LianLu.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
 
