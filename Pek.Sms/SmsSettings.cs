@@ -275,6 +275,12 @@ public class SmsData
     public String SignName { get; set; } = String.Empty;
 
     /// <summary>
+    /// 排序。同一类型按照此字段排序执行，值越小优先级越高，当上一执行失败时由后面的重新发送。
+    /// </summary>
+    [Description("排序")]
+    public Int32 Order { get; set; }
+
+    /// <summary>
     /// 请求超时时间
     /// </summary>
     [Description("请求超时时间")]
