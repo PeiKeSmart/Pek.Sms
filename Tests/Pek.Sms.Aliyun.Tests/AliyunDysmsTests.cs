@@ -1,7 +1,6 @@
 ﻿using NewLife.Log;
 using NewLife.Serialization;
 
-using Pek.Log;
 using Pek.Mail;
 using Pek.Sms.Aliyun.Models;
 using Pek.Sms.Aliyun.Models.Results;
@@ -34,11 +33,11 @@ public class AliyunDysmsTests {
 
         if (res.Contains("请求失败"))
         {
-            DTrace.WriteLine($"{res}", "AliyunDysmsTests.CheckResult");
+            XTrace.WriteLine($"[AliyunDysmsTests.CheckResult]{res}");
             return;
         }
 
-        DTrace.WriteLine($"获取到的数据：{res}", "AliyunDysmsTests.CheckResult");
+        XTrace.WriteLine($"[AliyunDysmsTests.CheckResult]获取到的数据：{res}");
     }
 
     [Fact]
@@ -56,11 +55,11 @@ public class AliyunDysmsTests {
 
         if (res.Code == "500")
         {
-            DTrace.WriteLine($"{res.ToJson()}", "AliyunDysmsTests.CheckResult1");
+            XTrace.WriteLine($"[AliyunDysmsTests.CheckResult1]{res.ToJson()}");
             return;
         }
 
-        DTrace.WriteLine($"获取到的数据：{res.ToJson()}", "AliyunDysmsTests.CheckResult1");
+        XTrace.WriteLine($"[AliyunDysmsTests.CheckResult1]获取到的数据：{res.ToJson()}");
     }
 
     private static AliyunDysmsResult ReturnAsDefautlResponse(String Message)
@@ -75,7 +74,7 @@ public class AliyunDysmsTests {
     [Fact]
     public void ConfigChecking()
     {
-        DTrace.WriteLine($"检测数据是否为空：{_config?.ToJson()}", "AliyunDysmsTests.ConfigChecking");
+        XTrace.WriteLine($"[AliyunDysmsTests.ConfigChecking]检测数据是否为空：{_config?.ToJson()}");
         Assert.NotNull(_config);
         Assert.NotEmpty(_config.SignName);
         Assert.NotEmpty(_config.AccessKey);
@@ -93,6 +92,6 @@ public class AliyunDysmsTests {
         };
 
         var response = await _client.SendCodeAsync(code);
-        DTrace.WriteLine($"收到的数据：{response.ToJson()}", "AliyunDysmsTests.SendCodeTest");
+        XTrace.WriteLine($"[AliyunDysmsTests.SendCodeTest]收到的数据：{response.ToJson()}");
     }
 }
