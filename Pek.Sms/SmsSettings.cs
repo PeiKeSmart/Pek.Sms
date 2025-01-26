@@ -6,7 +6,7 @@ using NewLife;
 using NewLife.Configuration;
 using NewLife.Serialization;
 
-namespace Pek.Mail;
+namespace Pek.Sms;
 
 /// <summary>短信设置</summary>
 [DisplayName("短信设置")]
