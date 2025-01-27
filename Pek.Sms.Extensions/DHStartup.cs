@@ -98,7 +98,13 @@ public class DHStartup : IPekStartup
 
     }
 
-    public void ProcessData() => throw new NotImplementedException();
+    /// <summary>
+    /// 处理数据
+    /// </summary>
+    public void ProcessData()
+    {
+
+    }
 
     /// <summary>
     /// 获取此启动配置实现的顺序
