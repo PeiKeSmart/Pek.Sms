@@ -8,6 +8,6 @@ public class FengHuoSmsTests
 
     public FengHuoSmsTests()
     {
-        _config = SmsSettings.Current.FindByNameAndType("aliyun", 0);
+        _config = SmsSettings.Current.FindByNameAndType("fenghuo", 0);
     }
 }

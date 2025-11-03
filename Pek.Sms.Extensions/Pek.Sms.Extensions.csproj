@@ -1,6 +1,6 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk.Web">
   <PropertyGroup>
-    <TargetFrameworks>net8.0;net9.0</TargetFrameworks>
+    <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>Pek.Sms.Extensions</RootNamespace>
     <AssemblyTitle>邮件操作扩展类库</AssemblyTitle>
