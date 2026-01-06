@@ -1,0 +1,23 @@
+<Solution>
+  <Folder Name="/Solution Items/">
+    <File Path=".editorconfig" />
+    <File Path=".github/copilot-instructions.md" />
+    <File Path=".github/workflows/publish-beta.yml" />
+    <File Path=".github/workflows/publish.yml" />
+    <File Path="global.json" />
+    <File Path="NuGet.config" />
+    <File Path="Readme.MD" />
+  </Folder>
+  <Folder Name="/tests/">
+    <Project Path="Tests/Pek.Sms.Aliyun.Tests/Pek.Sms.Aliyun.Tests.csproj" />
+    <Project Path="Tests/Pek.Sms.FengHuo.Tests/Pek.Sms.FengHuo.Tests.csproj" />
+    <Project Path="Tests/Pek.Sms.LianLu.Tests/Pek.Sms.LianLu.Tests.csproj" />
+    <Project Path="Tests/Pek.Sms.TencentCloud.Tests/Pek.Sms.TencentCloud.Tests.csproj" />
+  </Folder>
+  <Project Path="Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj" />
+  <Project Path="Pek.Sms.Extensions/Pek.Sms.Extensions.csproj" />
+  <Project Path="Pek.Sms.FengHuo/Pek.Sms.FengHuo.csproj" />
+  <Project Path="Pek.Sms.LianLu/Pek.Sms.LianLu.csproj" />
+  <Project Path="Pek.Sms.TencentCloud/Pek.Sms.TencentCloud.csproj" />
+  <Project Path="Pek.Sms/Pek.Sms.csproj" />
+</Solution>
