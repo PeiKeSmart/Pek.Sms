@@ -51,21 +51,27 @@ public class FengHuoSmsClient
         var token = GetToken(seed);
         var sendaction = BaseAddress + "send";
 
-        var result = await client.Post(sendaction)
-            .Timeout(_config.Timeout)
-            .IgnoreSsl()
-            .Retry(_config.RetryTimes)
-            .Data("account", _config.AccessKey)
-            .Data("token", token)
-            .Data("ts", seed)
-            .Data("mobiles", mobile)
-            .Data("content", content.UrlEncode())
-            .Data("ext", "")
-            .WhenCatch<Exception>(ex =>
-            {
-                return ex.Message;
-            })
-            .ResultStringAsync().ConfigureAwait(false);
+        String result;
+        try
+        {
+            var response = await client.Post(sendaction)
+                .Timeout(_config.Timeout)
+                .IgnoreSsl()
+                .Retry(_config.RetryTimes)
+                .Data("account", _config.AccessKey)
+                .Data("token", token)
+                .Data("ts", seed)
+                .Data("mobiles", mobile)
+                .Data("content", content.UrlEncode())
+                .Data("ext", "")
+                .GetResponseAsync().ConfigureAwait(false);
+            result = response.Data ?? String.Empty;
+        }
+        catch (Exception ex)
+        {
+            result = ex.Message;
+        }
+
         if (result.Contains("提交成功"))
         {
             return new SmsResult(true, result);
@@ -113,7 +119,17 @@ public class FengHuoSmsClient
             irequest.Data($"param{i + 1}", paramValues[i]);
         }
 
-        var result = await irequest.ResultStringAsync().ConfigureAwait(false);
+        String result;
+        try
+        {
+            var response = await irequest.GetResponseAsync().ConfigureAwait(false);
+            result = response.Data ?? String.Empty;
+        }
+        catch (Exception ex)
+        {
+            result = ex.Message;
+        }
+
         if (result.Contains("提交成功"))
         {
             return new SmsResult(true, result);

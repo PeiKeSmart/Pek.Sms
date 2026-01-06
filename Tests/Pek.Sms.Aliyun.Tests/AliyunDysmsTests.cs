@@ -22,14 +22,19 @@ public class AliyunDysmsTests {
     public async Task CheckResult()
     {
         var client = new Pek.Webs.Clients.WebClient();
-        var res = await client.Get("https://www.hlktech.com")
-            .IgnoreSsl()
-            .Retry(3)
-            .WhenCatch<HttpRequestException>(ex =>
-            {
-                return $"请求失败：{ex.StackTrace}";
-            })
-            .ResultStringAsync();
+        String res;
+        try
+        {
+            var response = await client.Get("https://www.hlktech.com")
+                .IgnoreSsl()
+                .Retry(3)
+                .GetResponseAsync();
+            res = response.Data ?? String.Empty;
+        }
+        catch (HttpRequestException ex)
+        {
+            res = $"请求失败：{ex.StackTrace}";
+        }
 
         if (res.Contains("请求失败"))
         {
@@ -44,14 +49,19 @@ public class AliyunDysmsTests {
     public async Task CheckResult1()
     {
         var client = new Pek.Webs.Clients.WebClient<AliyunDysmsResult>();
-        var res = await client.Get("https://www.deng-hao.com")
-            .IgnoreSsl()
-            .Retry(3)
-            .WhenCatch<HttpRequestException>(ex =>
-            {
-                return ReturnAsDefautlResponse(ex.Message);
-            })
-            .ResultFromJsonAsync();
+        AliyunDysmsResult res;
+        try
+        {
+            var response = await client.Get("https://www.deng-hao.com")
+                .IgnoreSsl()
+                .Retry(3)
+                .GetResponseAsync();
+            res = response.Data ?? ReturnAsDefautlResponse("响应数据为空");
+        }
+        catch (HttpRequestException ex)
+        {
+            res = ReturnAsDefautlResponse(ex.Message);
+        }
 
         if (res.Code == "500")
         {

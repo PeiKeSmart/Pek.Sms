@@ -69,17 +69,21 @@ public class AliyunDysmsClient : SmsClientBase
         var signature = SignatureHelper.GetApiSignature(bizParams, _config.AccessSecret);
         bizParams.Add("Signature", signature);
 
-        return await client.Post(BaseAddress)
-            .Timeout(_config.Timeout)
-            .IgnoreSsl()
-            .Retry(_config.RetryTimes)
-            .ContentType(HttpContentType.FormUrlEncoded)
-            .Data(bizParams)
-            .WhenCatch<Exception>(ex =>
-            {
-                return ReturnAsDefautlResponse(ex.Message);
-            })
-            .ResultFromJsonAsync().ConfigureAwait(false);
+        try
+        {
+            var response = await client.Post(BaseAddress)
+                .Timeout(_config.Timeout)
+                .IgnoreSsl()
+                .Retry(_config.RetryTimes)
+                .ContentType(HttpContentType.FormUrlEncoded)
+                .Data(bizParams)
+                .GetResponseAsync().ConfigureAwait(false);
+            return response.Data ?? ReturnAsDefautlResponse("响应数据为空");
+        }
+        catch (Exception ex)
+        {
+            return ReturnAsDefautlResponse(ex.Message);
+        }
     }
 
     public async Task<AliyunDysmsResult> SendCodeAsync(AliyunDysmsCode code)
@@ -118,17 +122,21 @@ public class AliyunDysmsClient : SmsClientBase
         var signature = SignatureHelper.GetApiSignature(bizParams, _config.AccessSecret);
         bizParams.Add("Signature", signature);
 
-        return await client.Post(BaseAddress)
-            .Timeout(_config.Timeout)
-            .IgnoreSsl()
-            .Retry(_config.RetryTimes)
-            .ContentType(HttpContentType.FormUrlEncoded)
-            .Data(bizParams)
-            .WhenCatch<Exception>(ex =>
-            {
-                return ReturnAsDefautlResponse(ex.Message);
-            })
-            .ResultFromJsonAsync().ConfigureAwait(false);
+        try
+        {
+            var response = await client.Post(BaseAddress)
+                .Timeout(_config.Timeout)
+                .IgnoreSsl()
+                .Retry(_config.RetryTimes)
+                .ContentType(HttpContentType.FormUrlEncoded)
+                .Data(bizParams)
+                .GetResponseAsync().ConfigureAwait(false);
+            return response.Data ?? ReturnAsDefautlResponse("响应数据为空");
+        }
+        catch (Exception ex)
+        {
+            return ReturnAsDefautlResponse(ex.Message);
+        }
     }
 
     private static AliyunDysmsResult ReturnAsDefautlResponse(String Message)

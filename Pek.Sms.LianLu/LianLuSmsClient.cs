@@ -38,24 +38,29 @@ public class LianLuSmsClient
         var ts = UnixTime.ToTimestamp();
         var sign = Encrypt.GetMD5($"{_config.AccessKey}{ts}{_config.AccessSecret}").ToLower();
 
-        var result = await client.Post(sendaction)
-            .Timeout(_config.Timeout)
-            .IgnoreSsl()
-            .Retry(_config.RetryTimes)
-            .Data("userid", _config.AccessKey)
-            .Data("ts", ts)
-            .Data("sign", sign)
-            .Data("mobile", mobiles)
-            //.Data("msgcontent", content.UrlEncode())
-            .Data("msgcontent", content)
-            .Data("extnum", "")
-            .Data("time", "")
-            .Data("messageid", "")
-            .WhenCatch<Exception>(ex =>
-            {
-                return ex.Message;
-            })
-            .ResultStringAsync().ConfigureAwait(false);
+        String result;
+        try
+        {
+            var response = await client.Post(sendaction)
+                .Timeout(_config.Timeout)
+                .IgnoreSsl()
+                .Retry(_config.RetryTimes)
+                .Data("userid", _config.AccessKey)
+                .Data("ts", ts)
+                .Data("sign", sign)
+                .Data("mobile", mobiles)
+                //.Data("msgcontent", content.UrlEncode())
+                .Data("msgcontent", content)
+                .Data("extnum", "")
+                .Data("time", "")
+                .Data("messageid", "")
+                .GetResponseAsync().ConfigureAwait(false);
+            result = response.Data ?? String.Empty;
+        }
+        catch (Exception ex)
+        {
+            result = ex.Message;
+        }
 
         if (result.Contains("提交成功"))
         {
