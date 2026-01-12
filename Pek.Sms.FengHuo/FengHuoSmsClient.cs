@@ -1,5 +1,7 @@
 ﻿using System.Text.Json;
+using NewLife;
 
+using Pek.Ids;
 using Pek.Security;
 using Pek.Webs.Clients;
 
@@ -143,13 +145,29 @@ public class FengHuoSmsClient
     /// <param name="requestData">请求参数</param>
     private async Task<SmsResult> SendMessageMassAsync(Object requestData)
     {
-        var url = $"{BaseAddress}/api/sendMessageMass";
-
         try
         {
-            var response = await _client.Post(url)
-                .ContentType(HttpContentType.Json)
-                .JsonData(requestData)
+            IHttpRequest request;
+
+            // 根据配置判断是否使用代理（本地调试时方便访问限制IP的平台）
+            if (_config.EnableProxy && !_config.ProxyUrl.IsNullOrWhiteSpace())
+            {
+                // 使用代理模式
+                request = _client.Post($"{_config.ProxyUrl}/api/sendMessageMass")
+                    .ContentType(HttpContentType.Json)
+                    .Header("X-Target-Url", BaseAddress)
+                    .Header("Id", IdHelper.GetNextId())
+                    .JsonData(requestData);
+            }
+            else
+            {
+                // 直接请求
+                request = _client.Post($"{BaseAddress}/api/sendMessageMass")
+                    .ContentType(HttpContentType.Json)
+                    .JsonData(requestData);
+            }
+
+            var response = await request
                 .Timeout(_config.Timeout)
                 .IgnoreSsl()
                 .Retry(_config.RetryTimes)
