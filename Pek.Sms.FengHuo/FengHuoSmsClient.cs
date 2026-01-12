@@ -55,52 +55,24 @@ public class FengHuoSmsClient
 
     #region 发送短信
     /// <summary>发送短信</summary>
-    /// <param name="mobile">手机号，可批量，用逗号分隔开，上限为10000个</param>
-    /// <param name="content">短信内容</param>
-    public async Task<SmsResult> SendAsync(String mobile, String content)
-    {
-        ArgumentNullException.ThrowIfNull(mobile);
-        ArgumentException.ThrowIfNullOrWhiteSpace(content);
-        if (String.IsNullOrWhiteSpace(_config.AccessKey)) throw new ArgumentNullException(nameof(_config.AccessKey));
-        if (String.IsNullOrWhiteSpace(_config.AccessSecret)) throw new ArgumentNullException(nameof(_config.AccessSecret));
-
-        // 解析手机号列表
-        var phoneList = mobile.Split([',', ';', '，', '；'], StringSplitOptions.RemoveEmptyEntries)
-            .Select(p => p.Trim())
-            .Where(p => !String.IsNullOrWhiteSpace(p))
-            .Distinct()
-            .ToList();
-
-        if (phoneList.Count == 0)
-        {
-            return new SmsResult(false, "手机号列表为空");
-        }
-
-        // 构建 JSON 请求对象
-        var timestamp = GetTimestamp();
-        var requestData = new
-        {
-            userName = _config.AccessKey,
-            timestamp,
-            sign = CalculateSign(_config.AccessKey, timestamp, _config.AccessSecret),
-            content,
-            phoneList
-        };
-
-        return await SendMessageMassAsync(requestData).ConfigureAwait(false);
-    }
-
-    /// <summary>发送模板短信</summary>
     /// <param name="mobiles">手机号，可批量，用逗号分隔开，上限为10000个</param>
-    /// <param name="templateId">模板ID</param>
+    /// <param name="content">短信内容，与短信模板ID必传其一</param>
+    /// <param name="templateId">短信模板ID，与短信内容必传其一</param>
     /// <param name="paramValues">模板参数值数组</param>
-    /// <param name="Ref">回传数据（已废弃，兼容保留）</param>
-    public async Task<SmsResult> SendTemplateParamd(String mobiles, String templateId, String[] paramValues, Object? Ref = null)
+    /// <param name="sendTime">短信定时发送时间，格式：yyyy-MM-dd HH:mm:ss，定时时间限制15天以内</param>
+    /// <param name="extcode">附带通道扩展码</param>
+    /// <param name="callData">用户回传数据，最大长度64，在回执推送时回传</param>
+    public async Task<SmsResult> SendAsync(String mobiles, String? content = null, Int32? templateId = null, String[]? paramValues = null, String? callData = null, String? sendTime = null, String? extcode = null)
     {
         ArgumentNullException.ThrowIfNull(mobiles);
-        ArgumentException.ThrowIfNullOrWhiteSpace(templateId);
         if (String.IsNullOrWhiteSpace(_config.AccessKey)) throw new ArgumentNullException(nameof(_config.AccessKey));
         if (String.IsNullOrWhiteSpace(_config.AccessSecret)) throw new ArgumentNullException(nameof(_config.AccessSecret));
+
+        // 验证 content 和 templateId 至少有一个
+        if (String.IsNullOrWhiteSpace(content) && !templateId.HasValue)
+        {
+            return new SmsResult(false, "短信内容和模板ID不能同时为空");
+        }
 
         // 解析手机号列表
         var phoneList = mobiles.Split([',', ';', '，', '；'], StringSplitOptions.RemoveEmptyEntries)
@@ -132,9 +104,13 @@ public class FengHuoSmsClient
             userName = _config.AccessKey,
             timestamp,
             sign = CalculateSign(_config.AccessKey, timestamp, _config.AccessSecret),
-            templateId = Int32.Parse(templateId),
+            content = String.IsNullOrWhiteSpace(content) ? String.Empty : content,
+            templateId = templateId,
             @params = paramsDict,
-            phoneList
+            phoneList,
+            sendTime = String.IsNullOrWhiteSpace(sendTime) ? String.Empty : sendTime,
+            extcode = String.IsNullOrWhiteSpace(extcode) ? String.Empty : extcode,
+            callData = String.IsNullOrWhiteSpace(callData) ? String.Empty : callData
         };
 
         return await SendMessageMassAsync(requestData).ConfigureAwait(false);
