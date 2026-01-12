@@ -1,6 +1,5 @@
 ﻿using Pek.Ids;
 using Pek.Infrastructure;
-using Pek.Mail;
 using Pek.VirtualFileSystem;
 
 namespace Pek.Sms.Aliyun;
@@ -75,6 +74,8 @@ public class DHStartup : IDHStartup
             //ExtendFields = "RetryTimes",
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
+
+        SmsSettings.Current.Save();
     }
 
     /// <summary>

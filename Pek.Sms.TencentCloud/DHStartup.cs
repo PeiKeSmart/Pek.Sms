@@ -1,7 +1,7 @@
 ﻿using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
-namespace Pek.Sms.LianLu;
+namespace Pek.Sms.TencentCloud;
 
 /// <summary>
 /// 表示应用程序启动时配置SignalR的对象

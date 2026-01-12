@@ -1,6 +1,5 @@
 ﻿using Pek.Ids;
 using Pek.Infrastructure;
-using Pek.Mail;
 using Pek.VirtualFileSystem;
 
 namespace Pek.Sms.FengHuo;
@@ -67,6 +66,8 @@ public class DHStartup : IDHStartup
             DisplayName = "烽火",
             SmsType = 3
         });
+
+        SmsSettings.Current.Save();
     }
 
     /// <summary>
