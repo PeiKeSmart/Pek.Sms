@@ -1,6 +1,8 @@
 ﻿using System.Text.Json;
+
 using NewLife;
 using NewLife.Log;
+using NewLife.Serialization;
 
 using Pek.Ids;
 using Pek.Security;
@@ -112,6 +114,8 @@ public class FengHuoSmsClient
             extcode = String.IsNullOrWhiteSpace(extcode) ? String.Empty : extcode,
             callData = String.IsNullOrWhiteSpace(callData) ? String.Empty : callData
         };
+
+        XTrace.WriteLine($"打印请求对象：{requestData.ToJson()}");
 
         return await SendMessageMassAsync(requestData).ConfigureAwait(false);
     }
