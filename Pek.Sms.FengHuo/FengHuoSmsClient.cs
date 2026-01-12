@@ -159,8 +159,15 @@ public class FengHuoSmsClient
                 request = _client.Post($"{_settings.ProxyUrl}/api/sendMessageMass")
                     .ContentType(HttpContentType.Json)
                     .Header("X-Target-Url", BaseAddress)
-                    .Header("Id", IdHelper.GetNextId())
-                    .JsonData(requestData);
+                    .Header("Id", IdHelper.GetNextId());
+
+                // 添加代理认证令牌
+                if (!_settings.ProxyToken.IsNullOrWhiteSpace())
+                {
+                    request.Header("X-Token-Code", _settings.ProxyToken);
+                }
+
+                request.JsonData(requestData);
             }
             else
             {

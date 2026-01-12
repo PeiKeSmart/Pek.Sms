@@ -31,6 +31,12 @@ public class SmsSettings : Config<SmsSettings>
     [Description("代理服务器地址")]
     public String? ProxyUrl { get; set; }
 
+    /// <summary>
+    /// 代理服务器认证令牌。用于 X-Token-Code 请求头
+    /// </summary>
+    [Description("代理认证令牌")]
+    public String? ProxyToken { get; set; }
+
     /// <summary>实例化</summary>
     public SmsSettings() { }
 
