@@ -92,10 +92,10 @@ public class FengHuoSmsClient
         Dictionary<String, String>? paramsDict = null;
         if (paramValues != null && paramValues.Length > 0)
         {
-            paramsDict = new Dictionary<String, String>();
+            paramsDict = [];
             for (var i = 0; i < paramValues.Length; i++)
             {
-                paramsDict[$"param{i + 1}"] = paramValues[i];
+                paramsDict[$"var{i + 1}"] = paramValues[i];
             }
         }
 
