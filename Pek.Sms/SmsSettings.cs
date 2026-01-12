@@ -19,6 +19,18 @@ public class SmsSettings : Config<SmsSettings>
     [Description("短信数据")]
     public List<SmsData> Data { get; set; } = [];
 
+    /// <summary>
+    /// 是否启用代理。启用后本地调试可通过代理访问限制IP的短信平台
+    /// </summary>
+    [Description("是否启用代理")]
+    public Boolean EnableProxy { get; set; }
+
+    /// <summary>
+    /// 代理服务器地址。例如：https://proxy.0ht.cn
+    /// </summary>
+    [Description("代理服务器地址")]
+    public String? ProxyUrl { get; set; }
+
     /// <summary>实例化</summary>
     public SmsSettings() { }
 
@@ -297,18 +309,6 @@ public class SmsData
     /// </summary>
     [Description("重试次数")]
     public Int32 RetryTimes { get; set; } = 3;
-
-    /// <summary>
-    /// 是否启用代理。启用后本地调试可通过代理访问限制IP的短信平台
-    /// </summary>
-    [Description("是否启用代理")]
-    public Boolean EnableProxy { get; set; }
-
-    /// <summary>
-    /// 代理服务器地址。例如：https://proxy.0ht.cn
-    /// </summary>
-    [Description("代理服务器地址")]
-    public String? ProxyUrl { get; set; }
 
     /// <summary>
     /// 扩展字段

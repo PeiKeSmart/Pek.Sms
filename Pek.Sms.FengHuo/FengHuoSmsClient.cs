@@ -12,12 +12,14 @@ public class FengHuoSmsClient
     public static String Name { get; } = "fenghuo";
 
     private readonly SmsData _config;
+    private readonly SmsSettings _settings;
     private String BaseAddress { get; set; }
     private readonly WebClient _client;
 
     public FengHuoSmsClient(SmsData? config)
     {
         _config = config ?? throw new ArgumentNullException(nameof(config));
+        _settings = SmsSettings.Current;
         _client = new WebClient();
 
         // 新版 API 基础地址，需要从配置中获取，默认使用旧地址兼容
@@ -150,10 +152,10 @@ public class FengHuoSmsClient
             IHttpRequest request;
 
             // 根据配置判断是否使用代理（本地调试时方便访问限制IP的平台）
-            if (_config.EnableProxy && !_config.ProxyUrl.IsNullOrWhiteSpace())
+            if (_settings.EnableProxy && !_settings.ProxyUrl.IsNullOrWhiteSpace())
             {
                 // 使用代理模式
-                request = _client.Post($"{_config.ProxyUrl}/api/sendMessageMass")
+                request = _client.Post($"{_settings.ProxyUrl}/api/sendMessageMass")
                     .ContentType(HttpContentType.Json)
                     .Header("X-Target-Url", BaseAddress)
                     .Header("Id", IdHelper.GetNextId())
