@@ -1,5 +1,6 @@
 ﻿using System.Text.Json;
 using NewLife;
+using NewLife.Log;
 
 using Pek.Ids;
 using Pek.Security;
@@ -177,6 +178,7 @@ public class FengHuoSmsClient
                 .ConfigureAwait(false);
 
             var result = response.Data ?? String.Empty;
+            XTrace.WriteLine($"短信发送返回：{result}");
 
             // 解析 JSON 响应
             using var doc = JsonDocument.Parse(result);
