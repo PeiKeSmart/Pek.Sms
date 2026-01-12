@@ -26,11 +26,9 @@ public class FengHuoSmsClient
         // 新版 API 基础地址，需要从配置中获取，默认使用旧地址兼容
         var baseUrl = _config.Data.TryGetValue("BaseUrl", out var url) && url != null
             ? url.ToString()
-            : "http://51sms.aipaas.com";
+            : "https://aisms.aipaas.com:8443";
 
-        BaseAddress = _config.Security
-            ? baseUrl!.Replace("http://", "https://")
-            : baseUrl!;
+        BaseAddress = baseUrl!;
 
         // 确保以 /sms 结尾
         if (!BaseAddress.EndsWith("/sms"))
