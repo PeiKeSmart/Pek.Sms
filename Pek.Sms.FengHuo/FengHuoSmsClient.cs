@@ -148,6 +148,8 @@ public class FengHuoSmsClient
     /// <param name="requestData">请求参数</param>
     private async Task<SmsResult> SendMessageMassAsync(Object requestData)
     {
+        var result = String.Empty;
+
         try
         {
             IHttpRequest request;
@@ -184,7 +186,7 @@ public class FengHuoSmsClient
                 .GetResponseAsync()
                 .ConfigureAwait(false);
 
-            var result = response.Data ?? String.Empty;
+            result = response.Data ?? String.Empty;
             XTrace.WriteLine($"短信发送返回：{result}");
 
             // 解析 JSON 响应
@@ -202,12 +204,12 @@ public class FengHuoSmsClient
             }
             else
             {
-                return new SmsResult(false, $"错误码：{code}，{message}");
+                return new SmsResult(false, $"错误码：{code}，{message}。原始响应：{result}");
             }
         }
         catch (Exception ex)
         {
-            return new SmsResult(false, $"发送异常：{ex.Message}");
+            return new SmsResult(false, $"发送异常：{ex.Message}：{result}");
         }
     }
     #endregion
