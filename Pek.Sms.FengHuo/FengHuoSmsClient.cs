@@ -1,9 +1,10 @@
 ﻿using System.Text.Json;
 
 using NewLife;
+using NewLife.Data;
 using NewLife.Log;
 using NewLife.Serialization;
-
+using Pek.FastToken;
 using Pek.Ids;
 using Pek.Security;
 using Pek.Webs.Clients;
@@ -58,13 +59,13 @@ public class FengHuoSmsClient
     #region 发送短信
     /// <summary>发送短信</summary>
     /// <param name="mobiles">手机号，可批量，用逗号分隔开，上限为10000个</param>
-    /// <param name="content">短信内容，与短信模板ID必传其一</param>
+    /// <param name="content">短信内容，与短信模板ID必传其一。无模板时可使用占位符{%key%}，通过paramValues替换</param>
     /// <param name="templateId">短信模板ID，与短信内容必传其一</param>
-    /// <param name="paramValues">模板参数值数组</param>
+    /// <param name="paramValues">参数字典。无模板时用于替换content中的{%key%}占位符；有模板时传递给API</param>
     /// <param name="sendTime">短信定时发送时间，格式：yyyy-MM-dd HH:mm:ss，定时时间限制15天以内</param>
     /// <param name="extcode">附带通道扩展码</param>
     /// <param name="callData">用户回传数据，最大长度64，在回执推送时回传</param>
-    public async Task<SmsResult> SendAsync(String mobiles, String? content = null, Int32? templateId = null, String[]? paramValues = null, String? callData = null, String? sendTime = null, String? extcode = null)
+    public async Task<SmsResult> SendAsync(String mobiles, String? content = null, Int32? templateId = null, IDictionary<String, String>? paramValues = null, String? callData = null, String? sendTime = null, String? extcode = null)
     {
         ArgumentNullException.ThrowIfNull(mobiles);
         if (String.IsNullOrWhiteSpace(_config.AccessKey)) throw new ArgumentNullException(nameof(_config.AccessKey));
@@ -88,15 +89,27 @@ public class FengHuoSmsClient
             return new SmsResult(false, "手机号列表为空");
         }
 
-        // 将参数数组转换为字典（新版API使用变量名映射）
+        // 处理短信内容和参数
+        var finalContent = content;
         Dictionary<String, String>? paramsDict = null;
-        if (paramValues != null && paramValues.Length > 0)
+
+        if (!templateId.HasValue && !String.IsNullOrWhiteSpace(content) && paramValues != null && paramValues.Count > 0)
         {
-            paramsDict = [];
-            for (var i = 0; i < paramValues.Length; i++)
+            // 无模板ID，有内容和参数，需要在本地替换占位符 {%var1%}, {%var2%} 等
+            var replacer = new FastReplacer("{%", "%}");
+            replacer.Append(content);
+
+            foreach (var kv in paramValues)
             {
-                paramsDict[$"var{i + 1}"] = paramValues[i];
+                replacer.Replace($"{{%{kv.Key}%}}", kv.Value);
             }
+
+            finalContent = replacer.ToString();
+        }
+        else if (templateId.HasValue && paramValues != null && paramValues.Count > 0)
+        {
+            // 有模板ID，参数字典传递给API
+            paramsDict = new Dictionary<String, String>(paramValues);
         }
 
         // 构建 JSON 请求对象
@@ -106,7 +119,7 @@ public class FengHuoSmsClient
             userName = _config.AccessKey,
             timestamp,
             sign = CalculateSign(_config.AccessKey, timestamp, _config.AccessSecret),
-            content = String.IsNullOrWhiteSpace(content) ? String.Empty : content,
+            content = String.IsNullOrWhiteSpace(finalContent) ? String.Empty : finalContent,
             templateId = templateId,
             @params = paramsDict,
             phoneList,
