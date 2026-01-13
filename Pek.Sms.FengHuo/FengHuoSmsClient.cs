@@ -72,7 +72,7 @@ public class FengHuoSmsClient
         if (String.IsNullOrWhiteSpace(_config.AccessSecret)) throw new ArgumentNullException(nameof(_config.AccessSecret));
 
         // 验证 content 和 templateId 至少有一个
-        if (String.IsNullOrWhiteSpace(content) && !templateId.HasValue)
+        if (String.IsNullOrWhiteSpace(content) && (!templateId.HasValue || templateId.Value <= 0))
         {
             return new SmsResult(false, "短信内容和模板ID不能同时为空");
         }
@@ -93,7 +93,7 @@ public class FengHuoSmsClient
         var finalContent = content;
         Dictionary<String, String>? paramsDict = null;
 
-        if (!templateId.HasValue && !String.IsNullOrWhiteSpace(content) && paramValues != null && paramValues.Count > 0)
+        if ((!templateId.HasValue || templateId.Value <= 0) && !String.IsNullOrWhiteSpace(content) && paramValues != null && paramValues.Count > 0)
         {
             // 无模板ID，有内容和参数，需要在本地替换占位符 {%var1%}, {%var2%} 等
             var replacer = new FastReplacer("{%", "%}");
@@ -106,7 +106,7 @@ public class FengHuoSmsClient
 
             finalContent = replacer.ToString();
         }
-        else if (templateId.HasValue && paramValues != null && paramValues.Count > 0)
+        else if (templateId.HasValue && templateId.Value > 0 && paramValues != null && paramValues.Count > 0)
         {
             // 有模板ID，参数字典传递给API
             paramsDict = new Dictionary<String, String>(paramValues);
