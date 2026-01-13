@@ -60,7 +60,10 @@
   </ItemGroup>
 
   <ItemGroup>
-    <ProjectReference Include="..\Pek.Sms\Pek.Sms.csproj" />
+    <ProjectReference Include="..\Pek.Sms.Aliyun\Pek.Sms.Aliyun.csproj" />
+    <ProjectReference Include="..\Pek.Sms.FengHuo\Pek.Sms.FengHuo.csproj" />
+    <ProjectReference Include="..\Pek.Sms.LianLu\Pek.Sms.LianLu.csproj" />
+    <ProjectReference Include="..\Pek.Sms.TencentCloud\Pek.Sms.TencentCloud.csproj" />
   </ItemGroup>
 
 </Project>
