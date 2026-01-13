@@ -1,4 +1,5 @@
-﻿using Pek.Infrastructure;
+﻿using Pek.Ids;
+using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
 namespace Pek.Sms.TencentCloud;
@@ -31,42 +32,46 @@ public class DHStartup : IDHStartup
     /// </summary>
     public void ProcessData()
     {
-        //var list = SmsSettings.Current.FindByName("fenghuo");
-        //if (list.Any()) return;
+        var list = SmsSettings.Current.FindByName(TencentSmsClient.Name);
+        if (list.Any()) return;
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 0
-        //});
+        SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = TencentSmsClient.Name,
+            DisplayName = "腾讯云",
+            SmsType = 0,
+            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 1
-        //});
+        SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = TencentSmsClient.Name,
+            DisplayName = "腾讯云",
+            SmsType = 1,
+            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 2
-        //});
+        SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = TencentSmsClient.Name,
+            DisplayName = "腾讯云",
+            SmsType = 2,
+            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 3
-        //});
+        SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = TencentSmsClient.Name,
+            DisplayName = "腾讯云",
+            SmsType = 3,
+            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
+        });
 
-        //SmsSettings.Current.Save();
+        SmsSettings.Current.Save();
     }
 
     /// <summary>
