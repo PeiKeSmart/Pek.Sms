@@ -9,6 +9,7 @@ on:
         - 'Pek.Sms.LianLu/**'
         - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
+        - 'Pek.Sms.TencentCloud/**'
   pull_request:
     branches: [ main ]
     paths:
@@ -17,6 +18,7 @@ on:
         - 'Pek.Sms.LianLu/**'
         - 'Pek.Sms.Aliyun/**'
         - 'Pek.Sms.Extensions/**'
+        - 'Pek.Sms.TencentCloud/**'
   workflow_dispatch:
 
 jobs:
@@ -44,6 +46,7 @@ jobs:
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.LianLu/Pek.Sms.LianLu.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
+        dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.TencentCloud/Pek.Sms.TencentCloud.csproj
 
     - name: Publish
       run: |

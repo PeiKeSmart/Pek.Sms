@@ -33,6 +33,7 @@ jobs:
         dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.LianLu/Pek.Sms.LianLu.csproj
         dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.Aliyun/Pek.Sms.Aliyun.csproj
         dotnet pack --no-restore --version-suffix $(date "+%Y.%m%d") -c Release -o out Pek.Sms.Extensions/Pek.Sms.Extensions.csproj
+        dotnet pack --no-build --version-suffix ${{ env.VERSION }} -c Release -o out Pek.Sms.TencentCloud/Pek.Sms.TencentCloud.csproj
     - name: Publish
       run: |
         dotnet nuget push ./out/*.nupkg --skip-duplicate --source https://api.nuget.org/v3/index.json --api-key ${{ secrets.nugetKey }}
