@@ -3,8 +3,8 @@
     <TargetFrameworks>net8.0;net9.0;net10.0</TargetFrameworks>
     <OutputType>Library</OutputType>
     <RootNamespace>Pek.Sms.Extensions</RootNamespace>
-    <AssemblyTitle>邮件操作扩展类库</AssemblyTitle>
-    <Description>基于DH框架的邮件操作扩展类库</Description>
+    <AssemblyTitle>短信操作扩展元包</AssemblyTitle>
+    <Description>短信客户端聚合包，包含阿里云、腾讯云、烽火、连陆等所有短信客户端实现</Description>
     <Company>湖北登灏科技有限公司</Company>
     <Copyright>©2020-2025 湖北登灏科技有限公司</Copyright>
     <VersionPrefix>4.00</VersionPrefix>
@@ -24,6 +24,9 @@
    
     <!--禁止生成launchSettings.json-->
     <NoDefaultLaunchSettingsFile>True</NoDefaultLaunchSettingsFile>
+
+    <!--元包配置：不包含自身 DLL，仅作为依赖聚合-->
+    <IncludeBuildOutput>false</IncludeBuildOutput>
   </PropertyGroup>
 
   <PropertyGroup>
