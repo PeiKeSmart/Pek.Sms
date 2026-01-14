@@ -10,11 +10,12 @@ public class SmsResult
     /// </summary>
     /// <param name="success">是否发送成功</param>
     /// <param name="raw">短信提供商返回的原始消息</param>
-    /// <param name="Message">信息</param>
-    public SmsResult(Boolean success = true, String Message = "", String raw = "")
+    /// <param name="message">信息</param>
+    public SmsResult(Boolean success = true, String message = "", String raw = "")
     {
         Success = success;
         Raw = raw;
+        Message = message;
     }
 
     /// <summary>
