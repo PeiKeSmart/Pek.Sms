@@ -191,16 +191,16 @@ public class FengHuoSmsClient
             {
                 var msgId = root.TryGetProperty("msgId", out var idProp) ? idProp.GetInt64() : 0;
                 var smsCount = root.TryGetProperty("smsCount", out var countProp) ? countProp.GetInt32() : 0;
-                return new SmsResult(true, $"发送成功，消息ID：{msgId}，计费条数：{smsCount}");
+                return new SmsResult(true, $"发送成功，消息ID：{msgId}，计费条数：{smsCount}", result);
             }
             else
             {
-                return new SmsResult(false, $"错误码：{code}，{message}。原始响应：{result}");
+                return new SmsResult(false, $"错误码：{code}，{message}", result);
             }
         }
         catch (Exception ex)
         {
-            return new SmsResult(false, $"发送异常：{ex.Message}：{result}");
+            return new SmsResult(false, $"发送异常：{ex.Message}", result);
         }
     }
     #endregion
