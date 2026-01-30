@@ -9,6 +9,7 @@ public class SmsEventConsumer : IConsumer<SmsEvent>
 
     public async Task HandleEventAsync(SmsEvent eventMessage)
     {
+        if (eventMessage.Success) return;
 
         await Task.CompletedTask.ConfigureAwait(false);
     }
