@@ -1,7 +1,4 @@
-﻿using NewLife.Log;
-using NewLife.Serialization;
-
-using Pek.Ids;
+﻿using Pek.Ids;
 using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
@@ -36,43 +33,55 @@ public class DHStartup : IDHStartup
     public void ProcessData()
     {
         var list = SmsSettings.Current.FindByName(FengHuoSmsClient.Name);
-        if (list.Any()) return;
+        if (list.Any() && list.Count == 4) return;
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 0))
         {
-            Code = IdHelper.GetIdString(),
-            Name = FengHuoSmsClient.Name,
-            DisplayName = "烽火",
-            SmsType = 0,
-            Order = 10
-        });
+            SmsSettings.Current.Data.Add(new()
+            {
+                Code = IdHelper.GetIdString(),
+                Name = FengHuoSmsClient.Name,
+                DisplayName = "烽火",
+                SmsType = 0,
+                Order = 10
+            });
+        }
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 1))
         {
-            Code = IdHelper.GetIdString(),
-            Name = FengHuoSmsClient.Name,
-            DisplayName = "烽火",
-            SmsType = 1,
-            Order = 10
-        });
+            SmsSettings.Current.Data.Add(new()
+            {
+                Code = IdHelper.GetIdString(),
+                Name = FengHuoSmsClient.Name,
+                DisplayName = "烽火",
+                SmsType = 1,
+                Order = 10
+            });
+        }
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 2))
         {
-            Code = IdHelper.GetIdString(),
-            Name = FengHuoSmsClient.Name,
-            DisplayName = "烽火",
-            SmsType = 2,
-            Order = 10
-        });
+            SmsSettings.Current.Data.Add(new()
+            {
+                Code = IdHelper.GetIdString(),
+                Name = FengHuoSmsClient.Name,
+                DisplayName = "烽火",
+                SmsType = 2,
+                Order = 10
+            });
+        }
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 3))
         {
-            Code = IdHelper.GetIdString(),
-            Name = FengHuoSmsClient.Name,
-            DisplayName = "烽火",
-            SmsType = 3,
-            Order = 10
-        });
+            SmsSettings.Current.Data.Add(new()
+            {
+                Code = IdHelper.GetIdString(),
+                Name = FengHuoSmsClient.Name,
+                DisplayName = "烽火",
+                SmsType = 3,
+                Order = 10
+            });
+        }
 
         SmsSettings.Current.Save();
     }

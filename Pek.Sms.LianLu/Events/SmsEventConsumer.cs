@@ -3,11 +3,11 @@ using Pek.Sms.Events;
 
 namespace Pek.Sms.LianLu.Events;
 
-public class SmsEventConsumer1 : IConsumer<SmsEvent1>
+public class SmsEventConsumer : IConsumer<SmsEvent>
 {
     public Int32 Sort { get; set; } = 20;
 
-    public async Task HandleEventAsync(SmsEvent1 eventMessage)
+    public async Task HandleEventAsync(SmsEvent eventMessage)
     {
         if (eventMessage.Success) return;
 
