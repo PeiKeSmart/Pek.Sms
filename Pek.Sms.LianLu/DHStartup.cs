@@ -37,39 +37,43 @@ public class DHStartup : IDHStartup
 
         if (!list.Any(e => e.SmsType == 0))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = "lianlu",
-            DisplayName = "联麓",
-            SmsType = 0
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = "lianlu",
+                DisplayName = "联麓",
+                SmsType = 0,
+                Order = 40
+            });
 
         if (!list.Any(e => e.SmsType == 1))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = "lianlu",
-            DisplayName = "联麓",
-            SmsType = 1
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = "lianlu",
+                DisplayName = "联麓",
+                SmsType = 1,
+                Order = 40
+            });
 
         if (!list.Any(e => e.SmsType == 2))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = "lianlu",
-            DisplayName = "联麓",
-            SmsType = 2
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = "lianlu",
+                DisplayName = "联麓",
+                SmsType = 2,
+                Order = 40
+            });
 
         if (!list.Any(e => e.SmsType == 3))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = "lianlu",
-            DisplayName = "联麓",
-            SmsType = 3
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = "lianlu",
+                DisplayName = "联麓",
+                SmsType = 3,
+                Order = 40
+            });
 
         SmsSettings.Current.Save();
     }

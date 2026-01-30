@@ -40,43 +40,47 @@ public class DHStartup : IDHStartup
 
         if (!list.Any(e => e.SmsType == 0))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = TencentSmsClient.Name,
-            DisplayName = "腾讯云",
-            SmsType = 0,
-            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = TencentSmsClient.Name,
+                DisplayName = "腾讯云",
+                SmsType = 0,
+                ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}",
+                Order = 30
+            });
 
         if (!list.Any(e => e.SmsType == 1))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = TencentSmsClient.Name,
-            DisplayName = "腾讯云",
-            SmsType = 1,
-            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = TencentSmsClient.Name,
+                DisplayName = "腾讯云",
+                SmsType = 1,
+                ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}",
+                Order = 30
+            });
 
         if (!list.Any(e => e.SmsType == 2))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = TencentSmsClient.Name,
-            DisplayName = "腾讯云",
-            SmsType = 2,
-            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = TencentSmsClient.Name,
+                DisplayName = "腾讯云",
+                SmsType = 2,
+                ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}",
+                Order = 30
+            });
 
         if (!list.Any(e => e.SmsType == 3))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = TencentSmsClient.Name,
-            DisplayName = "腾讯云",
-            SmsType = 3,
-            ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = TencentSmsClient.Name,
+                DisplayName = "腾讯云",
+                SmsType = 3,
+                ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}",
+                Order = 30
+            });
 
         SmsSettings.Current.Save();
     }

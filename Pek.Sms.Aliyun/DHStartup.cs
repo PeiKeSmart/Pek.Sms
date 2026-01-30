@@ -40,47 +40,51 @@ public class DHStartup : IDHStartup
 
         if (!list.Any(e => e.SmsType == 0))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 0,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = AliyunDysmsClient.Name,
+                DisplayName = "阿里云",
+                SmsType = 0,
+                Order = 20
+                //ExtendFields = "RetryTimes",
+                //ExtendData = "{\"RetryTimes\": \"3\"}"
+            });
 
         if (!list.Any(e => e.SmsType == 1))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 1,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = AliyunDysmsClient.Name,
+                DisplayName = "阿里云",
+                SmsType = 1,
+                Order = 20
+                //ExtendFields = "RetryTimes",
+                //ExtendData = "{\"RetryTimes\": \"3\"}"
+            });
 
         if (!list.Any(e => e.SmsType == 2))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 2,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = AliyunDysmsClient.Name,
+                DisplayName = "阿里云",
+                SmsType = 2,
+                Order = 20
+                //ExtendFields = "RetryTimes",
+                //ExtendData = "{\"RetryTimes\": \"3\"}"
+            });
 
         if (!list.Any(e => e.SmsType == 3))
             SmsSettings.Current.Data.Add(new()
-        {
-            Code = IdHelper.GetIdString(),
-            Name = AliyunDysmsClient.Name,
-            DisplayName = "阿里云",
-            SmsType = 3,
-            //ExtendFields = "RetryTimes",
-            //ExtendData = "{\"RetryTimes\": \"3\"}"
-        });
+            {
+                Code = IdHelper.GetIdString(),
+                Name = AliyunDysmsClient.Name,
+                DisplayName = "阿里云",
+                SmsType = 3,
+                Order = 20
+                //ExtendFields = "RetryTimes",
+                //ExtendData = "{\"RetryTimes\": \"3\"}"
+            });
 
         SmsSettings.Current.Save();
     }
