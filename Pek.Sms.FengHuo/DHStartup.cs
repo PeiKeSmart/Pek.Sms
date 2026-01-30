@@ -43,7 +43,8 @@ public class DHStartup : IDHStartup
             Code = IdHelper.GetIdString(),
             Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
-            SmsType = 0
+            SmsType = 0,
+            Order = 10
         });
 
         SmsSettings.Current.Data.Add(new()
@@ -51,7 +52,8 @@ public class DHStartup : IDHStartup
             Code = IdHelper.GetIdString(),
             Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
-            SmsType = 1
+            SmsType = 1,
+            Order = 10
         });
 
         SmsSettings.Current.Data.Add(new()
@@ -59,7 +61,8 @@ public class DHStartup : IDHStartup
             Code = IdHelper.GetIdString(),
             Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
-            SmsType = 2
+            SmsType = 2,
+            Order = 10
         });
 
         SmsSettings.Current.Data.Add(new()
@@ -67,10 +70,9 @@ public class DHStartup : IDHStartup
             Code = IdHelper.GetIdString(),
             Name = FengHuoSmsClient.Name,
             DisplayName = "烽火",
-            SmsType = 3
+            SmsType = 3,
+            Order = 10
         });
-
-        XTrace.WriteLine($"要保存的数据({FengHuoSmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
 
         SmsSettings.Current.Save();
     }

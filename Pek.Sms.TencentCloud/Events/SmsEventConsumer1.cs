@@ -1,13 +1,13 @@
 ﻿using Pek.Events;
 using Pek.Sms.Events;
 
-namespace Pek.Sms.Aliyun.Events;
+namespace Pek.Sms.TencentCloud.Events;
 
-public class SmsEventConsumer : IConsumer<SmsEvent>
+public class SmsEventConsumer1 : IConsumer<SmsEvent1>
 {
     public Int32 Sort { get; set; } = 20;
 
-    public async Task HandleEventAsync(SmsEvent eventMessage)
+    public async Task HandleEventAsync(SmsEvent1 eventMessage)
     {
         if (eventMessage.Success) return;
 

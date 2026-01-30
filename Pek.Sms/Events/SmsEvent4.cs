@@ -3,11 +3,11 @@
 /// <summary>
 /// 短信消费者事件
 /// </summary>
-public class SmsEvent
+public class SmsEvent4
 {
-    public SmsEvent(Int32 smsType)
+    public SmsEvent4()
     {
-        SmsType = smsType;
+        SmsType = 4;
     }
 
     public Int32 SmsType { get; set; }
