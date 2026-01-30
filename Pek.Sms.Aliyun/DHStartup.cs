@@ -36,9 +36,10 @@ public class DHStartup : IDHStartup
     public void ProcessData()
     {
         var list = SmsSettings.Current.FindByName(AliyunDysmsClient.Name);
-        if (list.Any()) return;
+        if (list.Any() && list.Count == 4) return;
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 0))
+            SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
             Name = AliyunDysmsClient.Name,
@@ -48,7 +49,8 @@ public class DHStartup : IDHStartup
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 1))
+            SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
             Name = AliyunDysmsClient.Name,
@@ -58,7 +60,8 @@ public class DHStartup : IDHStartup
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 2))
+            SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
             Name = AliyunDysmsClient.Name,
@@ -68,7 +71,8 @@ public class DHStartup : IDHStartup
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
-        SmsSettings.Current.Data.Add(new()
+        if (!list.Any(e => e.SmsType == 3))
+            SmsSettings.Current.Data.Add(new()
         {
             Code = IdHelper.GetIdString(),
             Name = AliyunDysmsClient.Name,

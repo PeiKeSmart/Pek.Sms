@@ -11,7 +11,7 @@ public class SmsResult
     /// <param name="success">是否发送成功</param>
     /// <param name="raw">短信提供商返回的原始消息</param>
     /// <param name="message">信息</param>
-    public SmsResult(Boolean success = true, String message = "", String raw = "")
+    public SmsResult(Boolean success = true, String? message = "", String raw = "")
     {
         Success = success;
         Raw = raw;
@@ -31,7 +31,7 @@ public class SmsResult
     /// <summary>
     /// 消息
     /// </summary>
-    public String Message { get; }
+    public String? Message { get; }
 
     /// <summary>
     /// 成功消息

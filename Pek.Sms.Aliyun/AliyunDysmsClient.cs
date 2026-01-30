@@ -1,7 +1,5 @@
 ﻿using NewLife;
-using NewLife.Configuration;
 
-using Pek.Mail;
 using Pek.Mail.Client;
 using Pek.Sms.Aliyun.Core.Extensions;
 using Pek.Sms.Aliyun.Core.Helpers;
