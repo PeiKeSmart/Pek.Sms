@@ -82,8 +82,6 @@ public class DHStartup : IDHStartup
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
 
-        XTrace.WriteLine($"要保存的数据({AliyunDysmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
-
         SmsSettings.Current.Save();
     }
 

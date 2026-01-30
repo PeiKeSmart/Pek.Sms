@@ -1,4 +1,6 @@
-﻿using Pek.Events;
+﻿using NewLife;
+
+using Pek.Events;
 using Pek.Helpers;
 using Pek.Sms.Events;
 
@@ -24,7 +26,7 @@ public class SmsEventConsumer : IConsumer<SmsEvent>
         if (!model.IsEnabled) return;
 
         var mobiles = eventMessage.Data?["mobiles"]?.SafeString();
-        if (mobiles == null) return; 
+        if (mobiles.IsNullOrWhiteSpace()) return; 
 
         var content = eventMessage.Data?["content"]?.SafeString();
         var templateId = eventMessage.Data?["templateId"]?.ToDGInt();

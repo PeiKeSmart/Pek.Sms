@@ -1,6 +1,4 @@
-﻿using NewLife.Log;
-using NewLife.Serialization;
-
+﻿using Pek.Ids;
 using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
@@ -35,43 +33,45 @@ public class DHStartup : IDHStartup
     public void ProcessData()
     {
         var list = SmsSettings.Current.FindByName(LianLuSmsClient.Name);
-        if (list.Any()) return;
+        if (list.Any() && list.Count == 4) return;
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 0
-        //});
+        if (!list.Any(e => e.SmsType == 0))
+            SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = "lianlu",
+            DisplayName = "联麓",
+            SmsType = 0
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 1
-        //});
+        if (!list.Any(e => e.SmsType == 1))
+            SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = "lianlu",
+            DisplayName = "联麓",
+            SmsType = 1
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 2
-        //});
+        if (!list.Any(e => e.SmsType == 2))
+            SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = "lianlu",
+            DisplayName = "联麓",
+            SmsType = 2
+        });
 
-        //SmsSettings.Current.Data.Add(new()
-        //{
-        //    Code = IdHelper.GetIdString(),
-        //    Name = "fenghuo",
-        //    DisplayName = "烽火",
-        //    SmsType = 3
-        //});
+        if (!list.Any(e => e.SmsType == 3))
+            SmsSettings.Current.Data.Add(new()
+        {
+            Code = IdHelper.GetIdString(),
+            Name = "lianlu",
+            DisplayName = "联麓",
+            SmsType = 3
+        });
 
-        XTrace.WriteLine($"要保存的数据({LianLuSmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
-
-        //SmsSettings.Current.Save();
+        SmsSettings.Current.Save();
     }
 
     /// <summary>

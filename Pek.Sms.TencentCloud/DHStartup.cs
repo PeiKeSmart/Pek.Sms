@@ -78,8 +78,6 @@ public class DHStartup : IDHStartup
             ExtendData = "{\"SdkAppId\": \"1400000000\", \"TemplateId\": \"123456\", \"CountryCode\": \"+86\"}"
         });
 
-        XTrace.WriteLine($"要保存的数据({TencentSmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
-
         SmsSettings.Current.Save();
     }
 
