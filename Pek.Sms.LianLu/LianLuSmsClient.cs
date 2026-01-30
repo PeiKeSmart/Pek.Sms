@@ -7,6 +7,8 @@ namespace Pek.Sms.LianLu;
 
 public class LianLuSmsClient
 {
+    public static String Name { get; } = "lianlu";
+
     private readonly SmsData _config;
     private String BaseAddress { get; set; }
     private readonly WebClient client;

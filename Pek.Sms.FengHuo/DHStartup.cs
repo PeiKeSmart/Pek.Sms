@@ -1,4 +1,7 @@
-﻿using Pek.Ids;
+﻿using NewLife.Log;
+using NewLife.Serialization;
+
+using Pek.Ids;
 using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
@@ -66,6 +69,8 @@ public class DHStartup : IDHStartup
             DisplayName = "烽火",
             SmsType = 3
         });
+
+        XTrace.WriteLine($"要保存的数据({FengHuoSmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
 
         SmsSettings.Current.Save();
     }

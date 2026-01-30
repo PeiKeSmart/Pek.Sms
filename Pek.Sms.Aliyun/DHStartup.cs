@@ -1,4 +1,7 @@
-﻿using Pek.Ids;
+﻿using NewLife.Log;
+using NewLife.Serialization;
+
+using Pek.Ids;
 using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
@@ -74,6 +77,8 @@ public class DHStartup : IDHStartup
             //ExtendFields = "RetryTimes",
             //ExtendData = "{\"RetryTimes\": \"3\"}"
         });
+
+        XTrace.WriteLine($"要保存的数据({AliyunDysmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
 
         SmsSettings.Current.Save();
     }

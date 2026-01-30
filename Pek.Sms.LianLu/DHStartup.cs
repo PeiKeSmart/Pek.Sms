@@ -1,4 +1,7 @@
-﻿using Pek.Infrastructure;
+﻿using NewLife.Log;
+using NewLife.Serialization;
+
+using Pek.Infrastructure;
 using Pek.VirtualFileSystem;
 
 namespace Pek.Sms.LianLu;
@@ -31,8 +34,8 @@ public class DHStartup : IDHStartup
     /// </summary>
     public void ProcessData()
     {
-        //var list = SmsSettings.Current.FindByName("fenghuo");
-        //if (list.Any()) return;
+        var list = SmsSettings.Current.FindByName(LianLuSmsClient.Name);
+        if (list.Any()) return;
 
         //SmsSettings.Current.Data.Add(new()
         //{
@@ -65,6 +68,8 @@ public class DHStartup : IDHStartup
         //    DisplayName = "烽火",
         //    SmsType = 3
         //});
+
+        XTrace.WriteLine($"要保存的数据({LianLuSmsClient.Name})：{SmsSettings.Current.Data.ToJson()}");
 
         //SmsSettings.Current.Save();
     }
