@@ -25,23 +25,26 @@ public class SmsEventConsumer : IConsumer<SmsEvent>
         if (model == null) return;
         if (!model.IsEnabled) return;
 
-        var Account = eventMessage.Data?["Account"]?.SafeString();
-        if (Account.IsNullOrWhiteSpace()) return;
+        var mobiles = eventMessage.Data?["mobiles"]?.SafeString();
+        if (mobiles.IsNullOrWhiteSpace()) return;
 
-        var Code = eventMessage.Data?["Code"]?.SafeString();
-        if (Code.IsNullOrWhiteSpace()) return;
+        var paramValues = eventMessage.Data?["paramValues"] as IDictionary<String, String>;
+        var templateParams = paramValues?.Values.ToArray();
 
         var templateId = eventMessage.Data?["templateId"]?.SafeString();
-        var extendCode = eventMessage.Data?["extendCode"]?.SafeString();
+        var extcode = eventMessage.Data?["extcode"]?.SafeString();
         var sessionContext = eventMessage.Data?["sessionContext"]?.SafeString();
         var senderId = eventMessage.Data?["senderId"]?.SafeString();
 
         var client = new TencentSmsClient(model);
 
         var resultSms = await client.SendAsync(
-                        Account,
-                        Code.Split(',', StringSplitOptions.RemoveEmptyEntries),  // 模板参数
-                        templateId
+                        mobiles,
+                        templateParams,
+                        templateId,
+                        extcode,
+                        sessionContext,
+                        senderId
                     ).ConfigureAwait(false);
 
         if (!resultSms.IsSuccess)

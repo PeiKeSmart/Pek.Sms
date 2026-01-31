@@ -39,7 +39,7 @@ public class DHStartup : IDHStartup
             SmsSettings.Current.Data.Add(new()
             {
                 Code = IdHelper.GetIdString(),
-                Name = "lianlu",
+                Name = LianLuSmsClient.Name,
                 DisplayName = "联麓",
                 SmsType = 0,
                 Order = 40
@@ -49,7 +49,7 @@ public class DHStartup : IDHStartup
             SmsSettings.Current.Data.Add(new()
             {
                 Code = IdHelper.GetIdString(),
-                Name = "lianlu",
+                Name = LianLuSmsClient.Name,
                 DisplayName = "联麓",
                 SmsType = 1,
                 Order = 40
@@ -59,7 +59,7 @@ public class DHStartup : IDHStartup
             SmsSettings.Current.Data.Add(new()
             {
                 Code = IdHelper.GetIdString(),
-                Name = "lianlu",
+                Name = LianLuSmsClient.Name,
                 DisplayName = "联麓",
                 SmsType = 2,
                 Order = 40
@@ -69,7 +69,7 @@ public class DHStartup : IDHStartup
             SmsSettings.Current.Data.Add(new()
             {
                 Code = IdHelper.GetIdString(),
-                Name = "lianlu",
+                Name = LianLuSmsClient.Name,
                 DisplayName = "联麓",
                 SmsType = 3,
                 Order = 40

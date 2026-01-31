@@ -26,20 +26,20 @@ public class SmsEventConsumer : IConsumer<SmsEvent>
         if (model == null) return;
         if (!model.IsEnabled) return;
 
-        var Phone = eventMessage.Data?["Phone"]?.SafeString();
-        if (Phone.IsNullOrWhiteSpace()) return;
+        var mobiles = eventMessage.Data?["mobiles"]?.SafeString();
+        if (mobiles.IsNullOrWhiteSpace()) return;
 
-        var TemplateCode = eventMessage.Data?["TemplateCode"]?.SafeString();
-        if (TemplateCode.IsNullOrWhiteSpace()) return;
+        var templateId = eventMessage.Data?["templateId"]?.SafeString();
+        if (templateId.IsNullOrWhiteSpace()) return;
 
-        var TemplateParams = eventMessage.Data?["TemplateParams"] as Dictionary<String, String>;
-        if (TemplateParams == null) return;
+        var paramValues = eventMessage.Data?["paramValues"] as Dictionary<String, String>;
+        if (paramValues == null) return;
 
         var message = new AliyunDysmsMessage
         {
-            Phone = [.. Phone.Split(',', StringSplitOptions.RemoveEmptyEntries)],
-            TemplateCode = TemplateCode,
-            TemplateParams = TemplateParams
+            Phone = [.. mobiles.Split(',', StringSplitOptions.RemoveEmptyEntries)],
+            TemplateCode = templateId,
+            TemplateParams = paramValues
         };
 
         var client = new AliyunDysmsClient(model);
