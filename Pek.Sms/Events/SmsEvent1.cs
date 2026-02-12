@@ -9,7 +9,7 @@ public class SmsEvent1
     /// 实例化一个短信消费者事件
     /// </summary>
     /// <param name="data">参数</param>
-    public SmsEvent1(Dictionary<String, Object>? data)
+    public SmsEvent1(Dictionary<String, Object?>? data)
     {
         SmsType = 1;
         Data = data;
@@ -25,5 +25,5 @@ public class SmsEvent1
     /// <summary>
     /// 要处理的数据
     /// </summary>
-    public Dictionary<String, Object>? Data { get; set; }
+    public Dictionary<String, Object?>? Data { get; set; }
 }
