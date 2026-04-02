@@ -117,17 +117,71 @@ else
 
 ### 代理支持
 
-当本地调试需要访问限制 IP 的短信平台时，可以启用代理：
+项目支持通过代理服务器访问短信平台API，适用于以下场景：
+- 本地开发调试时访问限制IP的短信平台
+- 通过代理服务器统一管理对外请求
+- 突破网络限制访问短信平台API
+
+#### 配置方式
+
+在配置文件中添加代理相关配置：
 
 ```json
 {
   "Sms": {
     "EnableProxy": true,
     "ProxyUrl": "https://proxy.example.com",
-    "ProxyToken": "your_proxy_token"
+    "ProxyToken": "your_proxy_token",
+    "Data": [
+      {
+        "Code": "fenghuo_notify",
+        "Name": "fenghuo",
+        "DisplayName": "烽火通知短信",
+        "SmsType": 0,
+        "IsDefault": true,
+        "IsEnabled": true,
+        "AccessKey": "your_username",
+        "AccessSecret": "your_password",
+        "SignName": "【沛柯智能】",
+        "Timeout": 60000,
+        "Security": true,
+        "RetryTimes": 3
+      }
+    ]
   }
 }
 ```
+
+**配置说明**：
+- `EnableProxy`：是否启用代理（默认：false）
+- `ProxyUrl`：代理服务器地址，例如：`https://proxy.0ht.cn`
+- `ProxyToken`：代理服务器认证令牌，用于 `X-Token-Code` 请求头
+
+#### 代理工作原理
+
+启用代理后，请求流程如下：
+1. 客户端将请求发送到代理服务器（`ProxyUrl`）
+2. 通过 `X-Target-Url` Header 传递真实的短信平台API地址
+3. 通过 `X-Token-Code` Header 传递代理认证令牌
+4. 代理服务器验证令牌后，将请求转发到真实的短信平台API
+5. 代理服务器将响应返回给客户端
+
+#### 当前支持情况
+
+| 服务商 | 代理支持 | 说明 |
+|--------|----------|------|
+| 烽火 | ✅ 已实现 | 完整支持代理功能 |
+| 阿里云 | 🚧 待实现 | 后续版本将支持 |
+| 腾讯云 | 🚧 待实现 | 后续版本将支持 |
+| 连陆 | 🚧 待实现 | 后续版本将支持 |
+
+#### 代理服务器要求
+
+代理服务器需要满足以下要求：
+- 支持 HTTPS 请求转发
+- 能够处理 `X-Target-Url` 和 `X-Token-Code` Header
+- 实现令牌验证机制
+- 正确转发请求Body和响应内容
 
 ### 多配置管理
 
